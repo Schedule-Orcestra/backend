@@ -1,20 +1,21 @@
 import express from "express"
 import dotenv from "dotenv"
 import{ database } from "./config/database"
-const erro = dotenv.config()
-console.log(erro ? "Falha ao carregar .env" : ".env corregado com sucesso")
+import router from "./routes/router"
+
+
+console.log(dotenv.config() ?  ".env corregado com sucesso" : "Falha ao carregar .env")
+
 
 database()
 
 const app = express()
 
+app.use(express.json())
+app.use("/", router)
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
-  
-  app.listen(process.env.PORT, () => {
-    console.log(`Example app listening on port 5000`)
-  })
+app.listen(process.env.PORT, () => {
+  console.log(`App listening on port ${process.env.PORT}`)
+})
 
 
