@@ -13,12 +13,16 @@ router.get('/teste', (req:Request, res: Response) => {
 
 //user
 router.post('/user', (req:Request, res: Response) =>{
-    userController.createUser(req, res)
+    userController.create(req, res)
 })
 
 router.get('/user', (req:Request, res: Response) =>{
-    userController.getUser(req, res)
+    userController.get(req, res)
 } )
+
+router.post('/login', (req:Request, res: Response) =>{
+    userController.login(req, res)
+})
 
 
 export default router;
