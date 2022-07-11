@@ -6,9 +6,9 @@ const router = Router()
 const userController = new UserController()
 
 //teste
-router.get('/teste', (req:Request, res: Response) => {
-    const {nome, idade} = req.body
-    res.send(`Olá meu nome é ${nome} e eu eu tenho ${idade} anos !!!`)
+router.post('/teste', (req:Request, res: Response) => {
+    const {name} = req.body
+    res.json({msg:`Olá meu nome é ${name}!!!`})
 })
 
 //user
