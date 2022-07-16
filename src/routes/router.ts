@@ -1,9 +1,11 @@
 import { Router, Request, Response} from "express"
+import ContactController from "../controllers/ContactController"
 import UserController from "../controllers/UserController"
 
 const router = Router() 
 
 const userController = new UserController()
+const contactController = new ContactController()
 
 //teste
 router.post('/teste', (req:Request, res: Response) => {
@@ -22,6 +24,17 @@ router.get('/user', (req:Request, res: Response) =>{
 
 router.post('/login', (req:Request, res: Response) =>{
     userController.login(req, res)
+})
+
+
+//contact
+
+router.post('/contact',(req:Request, res: Response) =>{
+    contactController.create(req, res)
+})
+
+router.get('/contact',(req:Request, res: Response) =>{
+    contactController.get(req, res)
 })
 
 
