@@ -1,7 +1,6 @@
 import {Request, Response} from "express"
 import User from "../models/User"
 import bcrypt from "bcryptjs"
-import { setDriver } from "mongoose"
 
 export default class UserController {
     create = async (req: Request, res: Response) =>{
@@ -27,8 +26,8 @@ export default class UserController {
 
     get = async (req: Request, res: Response) => {
         try{
-            const user = await User.find()
-            res.json(user)
+            const users = await User.find()
+            res.json(users)
         }catch(e){
             res.status(400).json(e)
         }
