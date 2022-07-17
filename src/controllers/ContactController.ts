@@ -12,26 +12,40 @@ export default class ContactController{
             if (user){
                 
                 const contact = await Contact.create({name, lastname, phone, email, userId})
-                res.status(200).json({messagem:"contado cadastro com sucesso", contact})
+                res.status(200).json({message:"contado cadastro com sucesso.", contact})
 
             }else{
-                res.status(400).json({erro:"o id do usuário não foi encontrado"})
+                res.status(400).json({erro:"o id do usuário não foi encontrado."})
             }
 
         }catch(e){
-            res.status(400).json({erro:"não foi possível condastrar o contato"})
+            res.status(400).json({erro:"não foi possível condastrar o contato."})
 
         }
 
 
     }
 
-    get =async (req: Request, res: Response) => {
+    get = async (req: Request, res: Response) => {
         const {userId} = req.body
         try{
             res.json( await Contact.find({userId}))
         }catch(e){
             res.status(400).json(e)
+        }
+
+    }
+
+    delete = async (req: Request, res: Response) =>{
+            const {contactId} = req.body
+        try{
+            const contato = await Contact.findByIdAndDelete(contactId)
+            if ( contato)
+                res.status(200).json({message:"Contado deletado com sucesso."})
+            else
+                res.status(200).json({message:"Esse contato não existe, id não encontrado."})
+        }catch(err){
+            res.status(400).json({erro:"Erro, não foi possívle deletar o contato"})
         }
 
     }
