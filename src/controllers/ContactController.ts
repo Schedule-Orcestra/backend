@@ -27,7 +27,7 @@ export default class ContactController{
     }
 
     get = async (req: Request, res: Response) => {
-        const {userId} = req.body
+        const {userId} = req.query
         try{
             res.json( await Contact.find({userId}))
         }catch(e){
