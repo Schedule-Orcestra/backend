@@ -37,5 +37,10 @@ router.get('/contact',(req:Request, res: Response) =>{
     contactController.get(req, res)
 })
 
+router.delete('/contact',(req:Request, res: Response) =>{
+    contactController.delete(req, res)
+})
+
+
 
 export default router;
