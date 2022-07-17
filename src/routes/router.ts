@@ -41,6 +41,11 @@ router.delete('/contact',(req:Request, res: Response) =>{
     contactController.delete(req, res)
 })
 
+router.patch('/contact', (req:Request, res: Response) =>{
+    contactController.update(req, res)
+})
+
+
 
 
 export default router;

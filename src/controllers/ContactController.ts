@@ -39,8 +39,7 @@ export default class ContactController{
     delete = async (req: Request, res: Response) =>{
             const {contactId} = req.body
         try{
-            const contato = await Contact.findByIdAndDelete(contactId)
-            if ( contato)
+            if (await Contact.findByIdAndDelete(contactId))
                 res.status(200).json({message:"Contado deletado com sucesso."})
             else
                 res.status(200).json({message:"Esse contato não existe, id não encontrado."})
@@ -49,5 +48,24 @@ export default class ContactController{
         }
 
     }
+
+    update = async (req: Request, res: Response) =>{
+
+            const {name,lastname, phone, email, contactId} = req.body
+            try{
+
+                if (await Contact.findByIdAndUpdate(contactId,{name, lastname, phone, email}))
+                    res.status(200).json({message:"Contado atualizado com sucesso."})
+                else
+                    res.status(200).json({message:"Esse contato não existe, id não encontrado."})
+                
+            }catch(err){
+
+                res.status(400).json({erro:"Erro, não foi possível autualizar o contato."})
+            }
+                
+
+    }
+
 
 }
